@@ -1,0 +1,8 @@
+paths:
+  data: "data/"
+  app_files: "app_files/"
+clustering:
+  n_clusters: 6
+  random_state: 42
+api:
+  opencage_key: "your_api_key_here"

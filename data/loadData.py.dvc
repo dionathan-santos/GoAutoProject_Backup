@@ -1,0 +1,5 @@
+outs:
+- md5: da4fe5730a44b5873b57f933959a53e8
+  size: 696
+  hash: md5
+  path: loadData.py

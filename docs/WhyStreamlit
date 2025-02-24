@@ -1,0 +1,47 @@
+### **Why Use Streamlit for the GoAuto Project?**
+
+Streamlit is chosen for this project because it simplifies the process of creating interactive web applications for data analysis and machine learning models. Unlike traditional web frameworks, Streamlit allows for rapid prototyping with minimal code.
+
+---
+
+### **Key Reasons for Using Streamlit**
+
+#### 1️⃣ **Ease of Use**
+- Simple Python-based framework—no need for HTML, CSS, or JavaScript.
+- Quick and easy deployment of interactive visualizations.
+
+#### 2️⃣ **Built-in Data Visualization**
+- Supports `matplotlib`, `seaborn`, `plotly`, and other visualization libraries.
+- Easily integrates interactive charts and maps for dealership insights.
+
+#### 3️⃣ **Real-time Interactivity**
+- Users can filter data dynamically with widgets (e.g., sliders, dropdowns, checkboxes).
+- The app updates instantly as users interact with it.
+
+#### 4️⃣ **Seamless Integration with Machine Learning**
+- Runs ML models directly and displays predictions dynamically.
+- Supports caching to speed up model inference.
+
+---
+
+### **How Streamlit is Used in GoAuto Project**
+
+| Feature | Implementation |
+|---------|---------------|
+| **Basic App (`app.py`)** | Loads and visualizes dealership data. |
+| **Advanced App (`advanced_app.py`)** | Uses ML models for predictive analytics. |
+| **Interactive Maps** | Displays dealership clusters using `folium`. |
+| **User Input Handling** | Allows filtering and sorting of data. |
+
+---
+
+### **How to Run the Streamlit App**
+
+```bash
+source .venv/bin/activate
+streamlit run src/app.py  # Run the basic app
+streamlit run src/advanced_app.py  # Run the advanced version
+```
+
+---
+

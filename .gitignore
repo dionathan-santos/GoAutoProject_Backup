@@ -1,3 +1,5 @@
 /app_files
 model/
 mlruns/
+.env
+.env

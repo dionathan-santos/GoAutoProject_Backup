@@ -23,6 +23,21 @@ run-advanced:
 test:
 	$(VENV) && PYTHONPATH=$(pwd) pytest test/
 
+
+# MLFlow-init
+mlflow-init:
+   @echo " Initializing ML flow server"
+   $(PYTHON) src/utils/mlflow_initialize.py
+
+train:
+   @echo "Running train.py"
+   $(PYTHON) model/train.py
+
+#Run test
+predict:
+   @echo "Running tests.."
+    $(VENV) && python3 predict_api.py
+
 # Clean up temporary files
 clean:
-	rm -rf __pycache__ */__pycache__
+	rm -rf __pycache__ */__pycache__		

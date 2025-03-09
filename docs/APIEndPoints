@@ -1,0 +1,62 @@
+API Endpoints & Usage
+
+1️⃣ API Overview
+The GoAuto Flask API serves trained KMeans clustering models for predicting the best sales region for used cars based on average price and mileage.
+
+It includes:
+
+✅ Two prediction endpoints for comparing different model versions.
+✅ Health check & home endpoints for API status and usage details.
+
+2️⃣ API Endpoints
+Method	Endpoint	Description
+GET	/health_status	Check if the API is running.
+GET	/ (home)	API welcome page with usage instructions.
+POST	/v1/predict	Predict cluster using Model V1 (6 clusters).
+POST	/v2/predict	Predict cluster using Model V2 (8 clusters).
+
+3️⃣ Example Requests & Responses
+✅ Check API Health
+
+curl -X GET http://127.0.0.1:9999/health_status
+
+🔹 Response:
+
+json
+
+{
+  "status": "API is running!"
+}
+
+✅ Get Predictions from Model V1
+
+curl -X POST http://127.0.0.1:9999/v1/predict \
+     -H "Content-Type: application/json" \
+     -d '{"avg_price": 10000, "mileage": 200000}'
+
+🔹 Response:
+{
+  "model_version": "V1",
+  "predicted_cluster": 5
+}
+
+✅ Get Predictions from Model V2
+
+curl -X POST http://127.0.0.1:9999/v2/predict \
+     -H "Content-Type: application/json" \
+     -d '{"avg_price": 30000, "mileage": 50000}'
+
+🔹 Response:
+
+json
+
+{
+  "model_version": "V2",
+  "predicted_cluster": 1
+}
+
+4️⃣ Common Errors & Fixes
+Issue	Solution
+curl: (7) Couldn't connect to server	Ensure API is running (python predict_api.py)
+{"error": "Missing avg_price or mileage"}	Ensure you pass correct JSON fields in request
+500 Internal Server Error	Check Flask logs for model loading issues

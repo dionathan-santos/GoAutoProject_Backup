@@ -14,6 +14,9 @@ This project analyzes car sales data to optimize dealership performance in Edmon
   - Predict sales regions and dealership performance.
 - **Interactive Visualizations:**
   - Use Streamlit to present data and insights interactively.
+- **REST API for Model Predictions:**
+Flask-based API to serve multiple versions of trained models.
+
 
 ---
 
@@ -35,6 +38,9 @@ GoAuto Project/
 │   ├── clustering.py   # Clustering logic (KMeans)
 │   ├── prediction.py   # Prediction functions
 |   ├── checkpoints
+|   ├── _init_.py
+|   ├── predict_api.py
+|   ├── train.py
 ├── notebook/           # Jupyter notebooks for experimentation
 │   ├── GoAuto.ipynb # Exploratory Data Analysis notebook
 ├── src/                # Main application logic
@@ -71,4 +77,30 @@ streamlit run src/app.py
 ---
 
 streamlit run src/advanced_app.py
+
+## API Endpoints & Usage
+
+### **1️⃣ API Overview**
+The **GoAuto Flask API** serves trained **KMeans clustering models** for predicting the best sales region for used cars based on **average price** and **mileage**. 
+
+It includes:
+- **Two prediction endpoints** for comparing different model versions.
+- **Health check & home endpoints** for API status and usage details.
+
+---
+
+### **2️⃣ API Endpoints**
+| **Method** | **Endpoint**        | **Description**                                     |
+|------------|---------------------|-----------------------------------------------------|
+| `GET`      | `/health_status`     | Check if the API is running.                       |
+| `GET`      | `/` (home)           | API welcome page with usage instructions.          |
+| `POST`     | `/v1/predict`        | Predict cluster using **Model V1 (6 clusters)**.   |
+| `POST`     | `/v2/predict`        | Predict cluster using **Model V2 (8 clusters)**.   |
+
+---
+
+### **3️⃣ Example Requests & Responses**
+#### ✅ **Check API Health**
+```bash
+curl -X GET http://127.0.0.1:9999/health_status
 

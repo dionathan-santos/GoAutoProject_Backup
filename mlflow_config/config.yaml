@@ -1,0 +1,31 @@
+mlflow:
+  # Tracking URI - can be local path, remote server, or database
+  tracking_uri: sqlite:///mlflow.db
+
+  # Experiment configuration
+  experiment:
+    name: GoAuto_Project
+    tags:
+      - project: car_sales_analysis
+      - domain: automotive
+
+  # Artifact storage configuration
+  artifacts:
+    # Use a local directory that is not tracked by Git
+    root_dir: ./mlartifacts
+
+  # Logging configuration
+  logging:
+    level: INFO
+    format: '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+
+  # Model registry configuration
+  model_registry:
+    backend: sqlite
+    path: sqlite:///mlflow_model_registry.db
+
+  # Optional: Remote tracking server configuration
+  # remote:
+  #   tracking_server: http://your-mlflow-tracking-server.com
+  #   username: your_username
+  #   password: your_password

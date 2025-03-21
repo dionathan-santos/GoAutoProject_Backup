@@ -1,5 +1,16 @@
+# Data directories - tracked by DVC, not Git
 /app_files
-model/
+/data
+/models/*.pkl
+
+# MLflow artifacts
 mlruns/
+mlartifacts/
+mlflow.db
+mlruns.db
+
+# Environment and local settings
 .env
-.env
+venvvenv/
+__pycache__/
+*.pyc

@@ -60,16 +60,89 @@ GoAuto Project/
    cd GoAuto Project
    ```
 
-2. Create and activate a virtual environment:
+2. Pull the data using DVC:
+   ```bash
+   # Install DVC if not already installed
+   pip install dvc
+   
+   # Pull the data and models
+   dvc pull
+   ```
+
+3. Create and activate a virtual environment:
    ```bash
    python3 -m venv venv
    source venv/bin/activate  # On Windows: venv\Scripts\activate
    ```
 
-3. Install dependencies:
+4. Install dependencies:
    ```bash
    pip install -r requirements.txt
    ```
+
+## Version Control
+This project uses a combination of Git, DVC (Data Version Control), and MLflow to manage code, data, and machine learning experiments:
+
+- **Git**: Tracks code, configuration files, and documentation
+- **DVC**: Tracks data files and ML models
+- **MLflow**: Tracks machine learning experiments, metrics, and model artifacts
+
+### Version Control Structure
+- Code files (.py, .yaml, etc.) are tracked with Git
+- Data files (.csv, etc.) are tracked with DVC
+- Model files (.pkl) are tracked with DVC
+- MLflow artifacts and configurations are excluded from version control
+
+### Working with DVC
+1. After making changes to tracked data:
+   ```bash
+   dvc add data/
+   dvc add models/
+   ```
+
+2. Commit the changes to Git:
+   ```bash
+   git add .
+   git commit -m "Update data and models"
+   ```
+
+3. Push the changes:
+   ```bash
+   git push
+   dvc push
+   ```
+
+4. To get the latest data:
+   ```bash
+   git pull
+   dvc pull
+   ```
+
+### MLflow Experiment Tracking
+1. MLflow is used to track machine learning experiments:
+   ```python
+   import mlflow
+
+   # Start an MLflow run
+   with mlflow.start_run():
+       # Log parameters
+       mlflow.log_param("model_type", "RandomForest")
+       
+       # Log metrics
+       mlflow.log_metric("accuracy", 0.85)
+       
+       # Log the model
+       mlflow.sklearn.log_model(model, "model")
+   ```
+
+2. MLflow configuration is stored in `mlflow_config/config.yaml`
+
+3. MLflow artifacts and database files are intentionally excluded from version control
+
+### Best Practices
+- Never commit MLflow database files or artifact directories to Git
+- Use the provided MLflow configuration for consistent experiment tracking
+- Store sensitive information like API keys in environment variables or a secure configuration management system
 
 ## Usage
 ### Run the Streamlit App
@@ -110,6 +183,11 @@ It includes:
    python predict_api.py
    ```
    The API will be available at http://localhost:5000
+   
+   ⚠️ **Important Note**: 
+   - The API is specifically configured to run on port 5000
+   - Do not use any other port when accessing the API
+   - All example curl commands use http://localhost:5000
 
 ---
 
